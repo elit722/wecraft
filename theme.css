@@ -1,63 +1,63 @@
-/*
-  theme.css — Jetons de design WeCraft
-  ------------------------------------
-  Un thème = un bloc [data-theme="nom"]. Le thème actif est posé sur
-  <html data-theme="starlight">. Pour ajouter un thème plus tard :
-  dupliquer le bloc, changer les valeurs, puis appeler
-  WeCraftTheme.apply('nom-du-theme') depuis js/theme.js.
-  Aucun autre fichier ne référence de couleur en dur : tout passe par
-  ces variables, donc un nouveau thème s'applique instantanément.
-*/
+/* ==========================================================================
+   WECRAFT — Design Tokens
+   --------------------------------------------------------------------------
+   Chaque thème est un simple bloc de variables CSS scoping sur
+   [data-theme="..."]. Pour ajouter un thème plus tard : dupliquer un bloc,
+   changer les valeurs, puis l'ajouter à la liste des thèmes dans
+   js/main.js (THEMES). Aucune autre partie du CSS ne doit être modifiée.
+   ========================================================================== */
 
 :root,
-[data-theme="starlight"] {
-  /* Fond / surfaces */
-  --bg: #05050a;
-  --bg-gradient: radial-gradient(ellipse 120% 80% at 50% -10%, #0e1830 0%, #05050a 55%);
-  --surface: #0c0e17;
-  --surface-2: #12141f;
-  --surface-hover: #181b29;
-  --border: rgba(244, 245, 248, 0.08);
-  --border-strong: rgba(244, 245, 248, 0.16);
+[data-theme="ciel-etoile"] {
+  /* Fond */
+  --color-bg: #05060c;
+  --color-bg-elevated: #0b0e1a;
+  --color-surface: #10132399;
+  --color-surface-solid: #10132a;
+  --color-border: rgba(255, 255, 255, 0.08);
 
   /* Texte */
-  --ink: #f4f5f8;
-  --ink-dim: #9aa0b4;
-  --ink-faint: #5b6079;
+  --color-text: #f4f6fb;
+  --color-text-dim: #9aa3c0;
+  --color-text-faint: #5b6382;
 
   /* Accent — bleu ciel étoilé */
-  --accent: #5b8def;
-  --accent-bright: #8ec1ff;
-  --accent-deep: #1c2b4f;
-  --accent-glow: rgba(91, 141, 239, 0.35);
+  --color-accent: #5b7fe0;
+  --color-accent-bright: #9ec2ff;
+  --color-accent-dim: #2a3a72;
+  --color-star: #ffffff;
 
-  /* États */
-  --danger: #e2596b;
-  --success: #5ecf9c;
+  /* Dégradés */
+  --gradient-hero: linear-gradient(
+    to top,
+    var(--color-bg) 0%,
+    rgba(5, 6, 12, 0.55) 45%,
+    rgba(5, 6, 12, 0.05) 75%
+  );
+  --gradient-side: linear-gradient(
+    to right,
+    rgba(5, 6, 12, 0.9) 0%,
+    rgba(5, 6, 12, 0) 40%
+  );
 
-  /* Typo */
-  --font-display: 'Chakra Petch', 'Segoe UI', sans-serif;
-  --font-body: 'Inter', 'Segoe UI', sans-serif;
+  /* Effets */
+  --shadow-elevated: 0 20px 60px rgba(0, 0, 10, 0.55);
+  --glow-accent: 0 0 24px rgba(91, 127, 224, 0.35);
 
   /* Rayons / rythme */
-  --radius-sm: 6px;
-  --radius-md: 12px;
-  --radius-lg: 22px;
-  --sidebar-w: 88px;
-  --topbar-h: 76px;
-
-  /* Ombres */
-  --shadow-soft: 0 20px 60px rgba(0, 0, 0, 0.55);
-  --shadow-card: 0 10px 30px rgba(4, 8, 20, 0.6);
+  --radius-s: 4px;
+  --radius-m: 8px;
+  --sidebar-w: 84px;
 }
 
-/*
-  Exemple de futur thème (désactivé, à titre de gabarit) :
+/* --------------------------------------------------------------------------
+   Emplacement pour de futurs thèmes, ex. :
 
-  [data-theme="aurore"] {
-    --bg: #f4f5f8;
-    --ink: #05050a;
-    --accent: #3f6fd6;
-    ...
-  }
-*/
+   [data-theme="aurore"] {
+     --color-bg: #06040c;
+     --color-accent: #8a5bd6;
+     ...
+   }
+
+   Le sélecteur de thème (à venir) posera l'attribut data-theme sur <html>.
+   -------------------------------------------------------------------------- */

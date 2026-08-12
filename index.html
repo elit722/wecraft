@@ -1,74 +1,230 @@
 <!DOCTYPE html>
-<html lang="fr" data-theme="starlight">
+<html lang="fr" data-theme="ciel-etoile">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>WeCraft — Accueil</title>
-<meta name="description" content="Base du site WeCraft : navigation, thème visuel et structure prêts pour les futurs systèmes de vidéo, de recommandation et de calendrier." />
-<link rel="icon" type="image/png" href="assets/logo.png" />
-
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-
+<title>WECRAFT — Accueil</title>
+<link rel="icon" href="assets/logo.png" />
 <link rel="stylesheet" href="css/theme.css" />
-<link rel="stylesheet" href="css/base.css" />
-<link rel="stylesheet" href="css/sections.css" />
+<link rel="stylesheet" href="css/style.css" />
 </head>
-<body>
+<body data-page="home">
 
-<canvas id="starfield" aria-hidden="true"></canvas>
+<div class="wc-starfield"></div>
 
-<aside class="sidebar" aria-label="Navigation principale">
-  <div class="sidebar__brand">
-    <img src="assets/logo.png" alt="WeCraft" />
+<!-- ==========================================================================
+     Barre latérale — commune à toutes les pages
+     ========================================================================== -->
+<aside class="wc-sidebar">
+  <div class="wc-sidebar__logo">
+    <img src="assets/logo.png" alt="WECRAFT" />
   </div>
 
-  <nav class="sidebar__nav">
-    <button class="nav-btn" data-section="search" aria-current="false">
-      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
-      <span class="nav-btn__label">Recherche</span>
-    </button>
-    <button class="nav-btn" data-section="home" aria-current="page">
-      <svg viewBox="0 0 24 24"><path d="M3 11l9-7 9 7" /><path d="M5 10v10h14V10" /></svg>
-      <span class="nav-btn__label">Accueil</span>
-    </button>
-    <button class="nav-btn" data-section="calendar" aria-current="false">
-      <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2" /><path d="M3 10h18M8 3v4M16 3v4" /></svg>
-      <span class="nav-btn__label">Calendrier</span>
-    </button>
+  <nav class="wc-sidebar__nav">
+    <a class="wc-navbtn" data-page="search" href="search.html" aria-label="Recherche">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <span class="wc-navbtn__label">Recherche</span>
+    </a>
+    <a class="wc-navbtn" data-page="home" href="index.html" aria-label="Accueil">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg>
+      <span class="wc-navbtn__label">Accueil</span>
+    </a>
+    <a class="wc-navbtn" data-page="calendar" href="calendar.html" aria-label="Calendrier">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+      <span class="wc-navbtn__label">Calendrier</span>
+    </a>
   </nav>
 
-  <div class="sidebar__spacer"></div>
+  <div class="wc-sidebar__spacer"></div>
 
-  <div class="sidebar__theme-hook" title="Choix du thème — à venir">
-    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><path d="M12 3a9 9 0 0 0 0 18z" /></svg>
-  </div>
+  <a class="wc-navbtn" href="#" aria-label="Ajouter">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+    <span class="wc-navbtn__label">Ajouter</span>
+  </a>
 </aside>
 
-<div class="app-shell">
-  <header class="topbar">
-    <span class="topbar__wordmark">WE<span>CRAFT</span></span>
+<!-- ==========================================================================
+     Barre supérieure — profil
+     ========================================================================== -->
+<header class="wc-topbar">
+  <span class="wc-topbar__brandword">WECRAFT</span>
+  <a class="wc-profile" data-page="profile" href="profile.html" aria-label="Profil">
+    <span class="wc-profile__avatar">A</span>
+    <span class="wc-profile__name">Alex</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+  </a>
+</header>
 
-    <div class="profile">
-      <button class="profile-btn" type="button">
-        <span class="profile-btn__avatar">E</span>
-        <svg class="profile-btn__chevron" viewBox="0 0 12 12"><path d="M2 4l4 4 4-4" /></svg>
-      </button>
-      <div class="profile-menu">
-        <a href="#">Mon profil</a>
-        <a href="#">Paramètres</a>
-        <hr />
-        <a href="#">Déconnexion</a>
+<main class="wc-main">
+
+  <!-- Section Hero : mis en avant par le futur système de recommandation -->
+  <section class="wc-hero">
+    <div class="wc-hero__bg" style="background-image: radial-gradient(ellipse at 30% 20%, #1c2a5e 0%, #05060c 65%);"></div>
+    <div class="wc-hero__content">
+      <div class="wc-eyebrow">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.9 6.3L20 10l-6.1 1.7L12 18l-1.9-6.3L4 10l6.1-1.7L12 2z"/></svg>
+        Recommandé pour vous
+      </div>
+      <h1 class="wc-hero__title">TITRE DU<br/>CONTENU</h1>
+      <div class="wc-hero__meta">
+        <span class="wc-match">98% pour vous</span>
+        <span>2026</span>
+        <span>Emplacement réservé</span>
+      </div>
+      <p class="wc-hero__desc">
+        Cet espace affichera la description générée par le futur système de
+        recommandation : synopsis, tags et pourquoi ce contenu est mis en avant
+        pour l'utilisateur connecté.
+      </p>
+      <div class="wc-hero__actions">
+        <button class="wc-btn wc-btn--primary">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          Lecture
+        </button>
+        <button class="wc-btn wc-btn--ghost">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 2"/></svg>
+          Plus tard
+        </button>
       </div>
     </div>
-  </header>
+  </section>
 
-  <main id="app-content" class="is-loading" aria-live="polite"></main>
-</div>
+  <!-- Rangées de contenu : chaque .wc-row__track sera peuplé dynamiquement -->
+  <section class="wc-rows">
 
-<script src="js/theme.js"></script>
-<script src="js/starfield.js"></script>
-<script src="js/app.js"></script>
+    <div class="wc-row" data-row="recommandations">
+      <div class="wc-row__head">
+        <h2 class="wc-row__title">Recommandé pour vous</h2>
+        <a class="wc-row__all" href="#">Tout voir ›</a>
+      </div>
+      <div class="wc-row__track">
+        <!-- Cartes générées par le futur système de recommandation -->
+        <article class="wc-card">
+          <div class="wc-card__art"></div>
+          <div class="wc-card__placeholder-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 3v18M16 3v18M3 8h5M3 16h5M16 8h5M16 16h5"/></svg>
+          </div>
+          <div class="wc-card__label">
+            <div class="wc-card__title">Titre exemple</div>
+            <div class="wc-card__sub">Emplacement réservé</div>
+          </div>
+        </article>
+        <article class="wc-card">
+          <div class="wc-card__art" style="--wc-tint: linear-gradient(160deg,#233166,#05060c 70%)"></div>
+          <div class="wc-card__placeholder-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 3v18M16 3v18M3 8h5M3 16h5M16 8h5M16 16h5"/></svg>
+          </div>
+          <div class="wc-card__label">
+            <div class="wc-card__title">Titre exemple</div>
+            <div class="wc-card__sub">Emplacement réservé</div>
+          </div>
+        </article>
+        <article class="wc-card">
+          <div class="wc-card__art" style="--wc-tint: linear-gradient(160deg,#151d40,#05060c 70%)"></div>
+          <div class="wc-card__placeholder-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 3v18M16 3v18M3 8h5M3 16h5M16 8h5M16 16h5"/></svg>
+          </div>
+          <div class="wc-card__label">
+            <div class="wc-card__title">Titre exemple</div>
+            <div class="wc-card__sub">Emplacement réservé</div>
+          </div>
+        </article>
+        <article class="wc-card">
+          <div class="wc-card__art" style="--wc-tint: linear-gradient(160deg,#2a3a72,#05060c 70%)"></div>
+          <div class="wc-card__placeholder-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 3v18M16 3v18M3 8h5M3 16h5M16 8h5M16 16h5"/></svg>
+          </div>
+          <div class="wc-card__label">
+            <div class="wc-card__title">Titre exemple</div>
+            <div class="wc-card__sub">Emplacement réservé</div>
+          </div>
+        </article>
+        <article class="wc-card">
+          <div class="wc-card__art"></div>
+          <div class="wc-card__placeholder-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 3v18M16 3v18M3 8h5M3 16h5M16 8h5M16 16h5"/></svg>
+          </div>
+          <div class="wc-card__label">
+            <div class="wc-card__title">Titre exemple</div>
+            <div class="wc-card__sub">Emplacement réservé</div>
+          </div>
+        </article>
+        <article class="wc-card">
+          <div class="wc-card__art" style="--wc-tint: linear-gradient(160deg,#233166,#05060c 70%)"></div>
+          <div class="wc-card__placeholder-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 3v18M16 3v18M3 8h5M3 16h5M16 8h5M16 16h5"/></svg>
+          </div>
+          <div class="wc-card__label">
+            <div class="wc-card__title">Titre exemple</div>
+            <div class="wc-card__sub">Emplacement réservé</div>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div class="wc-row" data-row="populaire">
+      <div class="wc-row__head">
+        <h2 class="wc-row__title">Populaire sur WECRAFT</h2>
+        <a class="wc-row__all" href="#">Tout voir ›</a>
+      </div>
+      <div class="wc-row__track">
+        <article class="wc-card">
+          <div class="wc-card__art" style="--wc-tint: linear-gradient(160deg,#151d40,#05060c 70%)"></div>
+          <div class="wc-card__placeholder-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 3v18M16 3v18M3 8h5M3 16h5M16 8h5M16 16h5"/></svg>
+          </div>
+          <div class="wc-card__label">
+            <div class="wc-card__title">Titre exemple</div>
+            <div class="wc-card__sub">Emplacement réservé</div>
+          </div>
+        </article>
+        <article class="wc-card">
+          <div class="wc-card__art"></div>
+          <div class="wc-card__placeholder-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 3v18M16 3v18M3 8h5M3 16h5M16 8h5M16 16h5"/></svg>
+          </div>
+          <div class="wc-card__label">
+            <div class="wc-card__title">Titre exemple</div>
+            <div class="wc-card__sub">Emplacement réservé</div>
+          </div>
+        </article>
+        <article class="wc-card">
+          <div class="wc-card__art" style="--wc-tint: linear-gradient(160deg,#2a3a72,#05060c 70%)"></div>
+          <div class="wc-card__placeholder-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 3v18M16 3v18M3 8h5M3 16h5M16 8h5M16 16h5"/></svg>
+          </div>
+          <div class="wc-card__label">
+            <div class="wc-card__title">Titre exemple</div>
+            <div class="wc-card__sub">Emplacement réservé</div>
+          </div>
+        </article>
+        <article class="wc-card">
+          <div class="wc-card__art" style="--wc-tint: linear-gradient(160deg,#233166,#05060c 70%)"></div>
+          <div class="wc-card__placeholder-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 3v18M16 3v18M3 8h5M3 16h5M16 8h5M16 16h5"/></svg>
+          </div>
+          <div class="wc-card__label">
+            <div class="wc-card__title">Titre exemple</div>
+            <div class="wc-card__sub">Emplacement réservé</div>
+          </div>
+        </article>
+        <article class="wc-card">
+          <div class="wc-card__art"></div>
+          <div class="wc-card__placeholder-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 3v18M16 3v18M3 8h5M3 16h5M16 8h5M16 16h5"/></svg>
+          </div>
+          <div class="wc-card__label">
+            <div class="wc-card__title">Titre exemple</div>
+            <div class="wc-card__sub">Emplacement réservé</div>
+          </div>
+        </article>
+      </div>
+    </div>
+
+  </section>
+
+</main>
+
+<script src="js/main.js"></script>
 </body>
 </html>

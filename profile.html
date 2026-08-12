@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="ciel-etoile">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>WECRAFT — Profil</title>
+<link rel="icon" href="assets/logo.png" />
+<link rel="stylesheet" href="css/theme.css" />
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body data-page="profile">
+
+<div class="wc-starfield"></div>
+
+<aside class="wc-sidebar">
+  <div class="wc-sidebar__logo">
+    <img src="assets/logo.png" alt="WECRAFT" />
+  </div>
+  <nav class="wc-sidebar__nav">
+    <a class="wc-navbtn" data-page="search" href="search.html" aria-label="Recherche">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <span class="wc-navbtn__label">Recherche</span>
+    </a>
+    <a class="wc-navbtn" data-page="home" href="index.html" aria-label="Accueil">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/></svg>
+      <span class="wc-navbtn__label">Accueil</span>
+    </a>
+    <a class="wc-navbtn" data-page="calendar" href="calendar.html" aria-label="Calendrier">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+      <span class="wc-navbtn__label">Calendrier</span>
+    </a>
+  </nav>
+  <div class="wc-sidebar__spacer"></div>
+  <a class="wc-navbtn" href="#" aria-label="Ajouter">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+    <span class="wc-navbtn__label">Ajouter</span>
+  </a>
+</aside>
+
+<header class="wc-topbar">
+  <span class="wc-topbar__brandword">WECRAFT</span>
+  <a class="wc-profile" data-page="profile" href="profile.html" aria-label="Profil">
+    <span class="wc-profile__avatar">A</span>
+    <span class="wc-profile__name">Alex</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+  </a>
+</header>
+
+<main class="wc-main">
+  <section class="wc-page">
+    <div class="wc-profile-header">
+      <div class="wc-profile-header__avatar">A</div>
+      <div>
+        <h2>Alex</h2>
+        <p>alex@wecraft.app</p>
+      </div>
+    </div>
+
+    <div class="wc-settings-list">
+
+      <div class="wc-settings-item">
+        <div>
+          <div class="wc-settings-item__label">Thème de couleur</div>
+          <div class="wc-settings-item__hint">D'autres thèmes seront ajoutés prochainement.</div>
+        </div>
+        <div class="wc-theme-swatches" id="wc-theme-swatches" role="radiogroup" aria-label="Thème de couleur">
+          <!-- Généré par js/main.js à partir du registre WC_THEMES -->
+        </div>
+      </div>
+
+      <div class="wc-settings-item">
+        <div>
+          <div class="wc-settings-item__label">Langue</div>
+          <div class="wc-settings-item__hint">Langue de l'interface</div>
+        </div>
+        <select class="wc-select">
+          <option>Français</option>
+          <option>English</option>
+        </select>
+      </div>
+
+      <div class="wc-settings-item">
+        <div>
+          <div class="wc-settings-item__label">Lecture automatique</div>
+          <div class="wc-settings-item__hint">Enchaîner les épisodes automatiquement</div>
+        </div>
+        <select class="wc-select">
+          <option>Activée</option>
+          <option>Désactivée</option>
+        </select>
+      </div>
+
+      <div class="wc-settings-item">
+        <div>
+          <div class="wc-settings-item__label">Notifications</div>
+          <div class="wc-settings-item__hint">Rappels et nouveautés du calendrier</div>
+        </div>
+        <select class="wc-select">
+          <option>Toutes</option>
+          <option>Importantes seulement</option>
+          <option>Aucune</option>
+        </select>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<script src="js/main.js"></script>
+<script>
+  // Construit le sélecteur de thème à partir du registre partagé WC_THEMES.
+  document.addEventListener("DOMContentLoaded", () => {
+    const wrap = document.getElementById("wc-theme-swatches");
+    if (!wrap) return;
+    const current = document.documentElement.getAttribute("data-theme");
+
+    WC_THEMES.forEach((theme) => {
+      const btn = document.createElement("button");
+      btn.className = "wc-swatch" + (theme.id === current ? " is-active" : "");
+      btn.style.background = theme.swatch;
+      btn.setAttribute("role", "radio");
+      btn.setAttribute("aria-checked", theme.id === current ? "true" : "false");
+      btn.setAttribute("aria-label", theme.label);
+      btn.title = theme.label;
+      btn.addEventListener("click", () => {
+        wcSetTheme(theme.id);
+        wrap.querySelectorAll(".wc-swatch").forEach((s) => s.classList.remove("is-active"));
+        btn.classList.add("is-active");
+      });
+      wrap.appendChild(btn);
+    });
+  });
+</script>
+</body>
+</html>
