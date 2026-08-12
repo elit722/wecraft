@@ -1,0 +1,63 @@
+/*
+  theme.css — Jetons de design WeCraft
+  ------------------------------------
+  Un thème = un bloc [data-theme="nom"]. Le thème actif est posé sur
+  <html data-theme="starlight">. Pour ajouter un thème plus tard :
+  dupliquer le bloc, changer les valeurs, puis appeler
+  WeCraftTheme.apply('nom-du-theme') depuis js/theme.js.
+  Aucun autre fichier ne référence de couleur en dur : tout passe par
+  ces variables, donc un nouveau thème s'applique instantanément.
+*/
+
+:root,
+[data-theme="starlight"] {
+  /* Fond / surfaces */
+  --bg: #05050a;
+  --bg-gradient: radial-gradient(ellipse 120% 80% at 50% -10%, #0e1830 0%, #05050a 55%);
+  --surface: #0c0e17;
+  --surface-2: #12141f;
+  --surface-hover: #181b29;
+  --border: rgba(244, 245, 248, 0.08);
+  --border-strong: rgba(244, 245, 248, 0.16);
+
+  /* Texte */
+  --ink: #f4f5f8;
+  --ink-dim: #9aa0b4;
+  --ink-faint: #5b6079;
+
+  /* Accent — bleu ciel étoilé */
+  --accent: #5b8def;
+  --accent-bright: #8ec1ff;
+  --accent-deep: #1c2b4f;
+  --accent-glow: rgba(91, 141, 239, 0.35);
+
+  /* États */
+  --danger: #e2596b;
+  --success: #5ecf9c;
+
+  /* Typo */
+  --font-display: 'Chakra Petch', 'Segoe UI', sans-serif;
+  --font-body: 'Inter', 'Segoe UI', sans-serif;
+
+  /* Rayons / rythme */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 22px;
+  --sidebar-w: 88px;
+  --topbar-h: 76px;
+
+  /* Ombres */
+  --shadow-soft: 0 20px 60px rgba(0, 0, 0, 0.55);
+  --shadow-card: 0 10px 30px rgba(4, 8, 20, 0.6);
+}
+
+/*
+  Exemple de futur thème (désactivé, à titre de gabarit) :
+
+  [data-theme="aurore"] {
+    --bg: #f4f5f8;
+    --ink: #05050a;
+    --accent: #3f6fd6;
+    ...
+  }
+*/
